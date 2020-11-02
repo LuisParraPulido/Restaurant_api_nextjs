@@ -6,14 +6,14 @@ const Layout = ({ children }) => {
     <div>
       <Navbar />
         {children}
-      <footer>This is the footer</footer>
-      <style jsx>
+      {/* <footer>This is the footer</footer> */}
+      {/* <style jsx>
         {`
           div {
             background: green;
           }
         `}
-      </style>
+      </style> */}
     </div>
   )
 }

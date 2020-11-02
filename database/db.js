@@ -1,4 +1,6 @@
-import allData from './data'
+import data from './data'
+
+let allData = data;
 
 class Database {
   constructor() {}
@@ -15,6 +17,31 @@ class Database {
       }
     return entry
   }
+  async postMenu(data) {
+    const newMenu = {
+      id: Math.floor(Math.random() * Math.floor(1000)),
+      ...data
+    }
+    allData.push(newMenu)
+    return allData
+  }
+  async putMenu(id, data) {
+    const menu = allData.find(item => item.id !== id)
+    const newData = allData.filter(item => item.id !== id)
+    const newMenu = {
+      ...menu,
+      ...newData
+    }
+    data.push(newMenu)
+    allData = data
+    return allData
+  }
+  async deleteMenu(id) {
+    const newData = allData.filter(item => item.id !== id)
+    allData = newData
+    return newData
+  }
+  
 }
 
 

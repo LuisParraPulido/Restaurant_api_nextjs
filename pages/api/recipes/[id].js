@@ -1,15 +1,33 @@
 import DB from '../../../database/db';
 
-const allRecipes = async (req, res) => {
-  const db = new DB();
-
-  const id = req.query.id
+const db = new DB();
 
 
-  const entry = await db.getById(id)
+export default async (req, res) => {
+  const data = req.body
+  const queryId = req.query.id
+  const id = parseInt(queryId)
 
 
-  res.status(200).json(entry)
+  switch (req.method) {
+    case 'GET':
+      const entry = await db.getById(id)
+      res.status(200).json(entry)
+     
+      break
+    case 'PUT':
+      const editMenu = await db.putMenu(id, data)
+    
+      res.statusCode = 200
+      res.setHeader('Content-Type', 'application/json')
+      res.end(JSON.stringify(editMenu))
+      break
+    case 'DELETE':
+      const deleteMenu = await db.deleteMenu(id)
+    
+      res.statusCode = 200
+      res.setHeader('Content-Type', 'application/json')
+      res.end(JSON.stringify(deleteMenu))
+      break
+  }
 }
-
-export  default allRecipes;

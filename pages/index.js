@@ -1,26 +1,65 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from '../components/Navbar/Navbar';
-import fetch from 'isomorphic-unfetch'
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+
+import { deleteMenu } from '../actions/index';
+
 
 const Home = () => {
-  const [recipes, setRecipes] = useState([]);
+  const router = useRouter()
+  const [ id, setId ] = useState()
+  const handleText = event => {
+    setId({
+      [event.target.name]: event.target.value
+    })
+  }
 
-  useEffect(() => {
-    const fetchData = async() => {
-      try {
-        const recipes = await fetch('/api/recipes')
-        const data = await recipes.json()
-        console.log(data)
-        
-      } catch (error) {
-        console.error(error)
-      }
-    }
-    fetchData()
-  }, [])
+  const handleRoute = (e) => {
+    e.preventDefault()
+    router.push(`/menu/${id.id}`)
+  }
+
+  const handleDelete = async() => {
+    const response = await deleteMenu(id.id)
+    alert('Menu Eliminado')
+  }
+
   return(
     <div>
-      <h1>Liam Adrian Teolt Parra</h1>
+      <h1>Restaurant Menu</h1>
+      <div>
+        <Link href='/menu'>
+        <a>Ver Todos</a>
+        </Link>
+      </div>
+      <div>
+        <Link href='/addMenu'>
+          <a>Agregar un Menu</a>
+        </Link>
+      </div>
+      <div>
+        Editar un menu
+      </div>
+      <div>
+        <label>Eliminar un Menu</label>
+        <input 
+          type='text'
+          name='id'
+          placeholder='ingrese id'
+          onChange={handleText} 
+        />
+        <button onClick={handleDelete}>Eliminar</button>
+      </div>
+      <div>
+        <label>Buscar Menu</label>
+        <input 
+          type='text'
+          name='id'
+          placeholder='ingrese id'
+          onChange={handleText} 
+        />
+        <button onClick={handleRoute}>ir</button>
+      </div>
     </div>
   )
 }

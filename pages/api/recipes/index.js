@@ -1,12 +1,24 @@
 import DB from '../../../database/db';
 
-const allRecipes = async (req, res) => {
-  const db = new DB();
-  const allEntries = await db.getAll()
+const db = new DB();
 
-  res.statusCode = 200
-  res.setHeader('Content-Type', 'application/json')
-  res.end(JSON.stringify(allEntries))
+
+export default async (req, res) => {
+  const data = req.body
+  switch (req.method) {
+    case 'GET':
+      const allEntries = await db.getAll()
+      res.statusCode = 200
+      res.setHeader('Content-Type', 'application/json')
+      res.end(JSON.stringify(allEntries))
+     
+      break
+    case 'POST':
+      const addMenu = await db.postMenu(data)
+    
+      res.statusCode = 201
+      res.setHeader('Content-Type', 'application/json')
+      res.end(JSON.stringify(addMenu))
+      break
+  }
 }
-
-export  default allRecipes;
