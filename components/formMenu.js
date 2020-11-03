@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 
-import { postMenu } from '../actions';
+import { postMenu, editMenu } from '../actions';
 
 const formMenu = (props) => {
   const [form, setValues] = useState({
-    name: null,
-    description: null,
-    price: null,
-    state: false,
+    name: props.menu ? props.menu.name : null,
+    ingredients: props.menu ? props.menu.ingredients : null,
+    price: props.menu ? props.menu.price : null,
+    state: props.menu ? props.menu.state : null,
   })
 
   const handleText = event => {
@@ -21,9 +21,13 @@ const formMenu = (props) => {
     event.preventDefault()
     const createMenu = await postMenu(form)
   }
+  const handleEdit = async() => {
+    event.preventDefault()
+    const changeMenu = await editMenu(props.menu.id, form)
+  }
   return(
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={props.menu ? handleEdit : handleSubmit}>
          <input 
           name='name'
           type='text'
@@ -31,10 +35,10 @@ const formMenu = (props) => {
           placeholder='Name'
         />
          <input 
-          name='description'
+          name='ingredients'
           type='text'
           onChange={handleText}
-          placeholder='Ingredients Description'
+          placeholder='Ingredients '
         />
          <input 
           name='price'

@@ -7,7 +7,6 @@ const getAllMenus= async() => {
     url: '/api/recipes',
   })
   return request.data
-    
   } catch (error) {
     console.error(error)
   }

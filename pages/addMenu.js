@@ -1,6 +1,6 @@
 import React from 'react';
 
-import FormMenu from '../components/formMenu';
+import FormMenu from '../components/FormMenu';
 
 const AboutMenu = (props) => {
   return(

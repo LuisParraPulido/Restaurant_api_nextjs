@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
+import styles from '../sass/pages/home.scss'
+
 import { deleteMenu } from '../actions/index';
 
 
@@ -25,42 +27,44 @@ const Home = () => {
   }
 
   return(
-    <div>
-      <h1>Restaurant Menu</h1>
-      <div>
-        <Link href='/menu'>
-        <a>Ver Todos</a>
-        </Link>
+    <div className={styles.box}>
+      <div className={styles.container}>
+        <h1>Restaurant Menu</h1>
+        <div className={styles.containerItem}>
+          <Link href='/menu'>
+          <a>Ver Todos</a>
+          </Link>
+        </div>
+        <div className={styles.containerItem}>
+          <Link href='/addMenu'>
+            <a>Agregar un Menu</a>
+          </Link>
+        </div>
+        <div className={styles.containerItem}>
+          <label>Eliminar un Menu</label>
+          <input 
+            type='text'
+            name='id'
+            placeholder='ingrese id'
+            onChange={handleText} 
+          />
+          <button onClick={handleDelete}>Eliminar</button>
+        </div>
+        <div className={styles.containerItem}>
+          <label>Buscar Menu</label>
+          <input 
+            type='text'
+            name='id'
+            placeholder='ingrese id'
+            onChange={handleText} 
+          />
+          <button onClick={handleRoute}>ir</button>
+        </div>
       </div>
-      <div>
-        <Link href='/addMenu'>
-          <a>Agregar un Menu</a>
-        </Link>
-      </div>
-      <div>
-        Editar un menu
-      </div>
-      <div>
-        <label>Eliminar un Menu</label>
-        <input 
-          type='text'
-          name='id'
-          placeholder='ingrese id'
-          onChange={handleText} 
-        />
-        <button onClick={handleDelete}>Eliminar</button>
-      </div>
-      <div>
-        <label>Buscar Menu</label>
-        <input 
-          type='text'
-          name='id'
-          placeholder='ingrese id'
-          onChange={handleText} 
-        />
-        <button onClick={handleRoute}>ir</button>
-      </div>
+    
+
     </div>
+    
   )
 }
 

@@ -26,14 +26,16 @@ class Database {
     return allData
   }
   async putMenu(id, data) {
-    const menu = allData.find(item => item.id !== id)
     const newData = allData.filter(item => item.id !== id)
     const newMenu = {
-      ...menu,
-      ...newData
+      id,
+      name: data.name,
+      ingredients: data.ingredients,
+      price: data.price,
+      state: data.state,
     }
-    data.push(newMenu)
-    allData = data
+    newData.push(newMenu)
+    allData = newData
     return allData
   }
   async deleteMenu(id) {
