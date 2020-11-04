@@ -1,4 +1,3 @@
-@import '../index.scss';
 
 body {
   color: $darker;
@@ -18,7 +17,7 @@ a {
 
 .container {
   box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
-  margin: 0px auto;
+  margin: auto;
   padding: 30px;
   border-radius: 25px;
   align-items: center;
@@ -32,4 +31,13 @@ a {
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
+  align-items: center;
+}
+
+.inputContainer {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  margin-top: 10px;
 }

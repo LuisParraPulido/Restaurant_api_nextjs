@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router'
 
+import styles from '../../sass/index.scss'
+
 import { getMenu } from '../../actions/index';
 import FormMenu from '../../components/FormMenu';
-import { loadGetInitialProps } from 'next/dist/next-server/lib/utils';
 
 
 const MenuItem = ({ data }) => {
@@ -27,21 +28,31 @@ const MenuItem = ({ data }) => {
   }
   if(!menu) {
     return (
-      <div>No existe el Menu seleccionado</div>
+      <div className={styles.menuContainer}>
+        No existe el Menu seleccionado
+      </div>
     )
   } else {
     return(
-      <div>
-        <h1>Menu {menu.id}</h1>
-        <h3>Nombre: {menu.name}</h3>
-        <p>Ingredientes: {menu.ingredients}</p>
-        <p>Precio: {menu.price}</p>
-        <p>Disponible: {menu.state ? 'si' : 'no'}</p>
-        {edit ? 
-          <FormMenu menu={menu}/> 
-          : null        
-        }
-        <button onClick={() => setEdit(!edit)}>{edit ? 'cancelar': 'editar'}</button>
+      <div className={styles.menuContainer}>
+        <div className={styles.menuItem}>
+          <h1>Menu {menu.id}</h1>
+          <h3>Nombre: {menu.name}</h3>
+          <p>Ingredientes: {menu.ingredients}</p>
+          <p>Precio: {menu.price}</p>
+          <p>Disponible: {menu.state ? 'si' : 'no'}</p>
+          {edit ? 
+            <FormMenu menu={menu}/> 
+            : null        
+          }
+          <button 
+            onClick={() => setEdit(!edit)}
+            className={styles.littleButton}
+          >
+              {edit ? 'cancelar': 'editar'}
+          </button>
+
+        </div>
       </div>
     )
   }

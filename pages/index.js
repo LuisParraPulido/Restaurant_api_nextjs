@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-import styles from '../sass/pages/home.scss'
+import styles from '../sass/index.scss'
 
 import { deleteMenu } from '../actions/index';
 
@@ -32,33 +32,39 @@ const Home = () => {
         <h1>Restaurant Menu</h1>
         <div className={styles.containerItem}>
           <Link href='/menu'>
-          <a>Ver Todos</a>
+          <a className={styles.bigButton}>Ver Todos</a>
           </Link>
         </div>
         <div className={styles.containerItem}>
           <Link href='/addMenu'>
-            <a>Agregar un Menu</a>
+            <a className={styles.bigButton}>Agregar un Menu</a>
           </Link>
         </div>
         <div className={styles.containerItem}>
           <label>Eliminar un Menu</label>
-          <input 
-            type='text'
-            name='id'
-            placeholder='ingrese id'
-            onChange={handleText} 
-          />
-          <button onClick={handleDelete}>Eliminar</button>
+          <div className={styles.inputContainer}>
+            <input 
+              type='text'
+              className={styles.input}
+              name='id'
+              placeholder='ingrese id'
+              onChange={handleText} 
+            />
+            <button className={styles.littleButton} onClick={handleDelete}>Eliminar</button>
+          </div>
         </div>
         <div className={styles.containerItem}>
           <label>Buscar Menu</label>
-          <input 
-            type='text'
-            name='id'
-            placeholder='ingrese id'
-            onChange={handleText} 
-          />
-          <button onClick={handleRoute}>ir</button>
+          <div className={styles.inputContainer}>
+            <input 
+              type='text'
+              className={styles.input}
+              name='id'
+              placeholder='ingrese id'
+              onChange={handleText} 
+            />
+            <button className={styles.littleButton} onClick={handleRoute}>ir</button>
+          </div>
         </div>
       </div>
     

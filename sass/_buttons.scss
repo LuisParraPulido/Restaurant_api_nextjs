@@ -1,0 +1,24 @@
+%button {
+  border: 1px solid gray;
+  padding: 10px;
+  border-radius: 25px;
+  text-align: center;
+  background-color: $lightest;
+  cursor: pointer;
+  &:hover {
+    background-color: $medium;
+  }
+}
+
+.bigButton {
+  @extend %button;
+  min-width: 140px;
+}
+
+.littleButton {
+  @extend %button;
+  width: 80px;
+  border-radius: 5px;
+  padding: 0;
+  height: 28px;
+}

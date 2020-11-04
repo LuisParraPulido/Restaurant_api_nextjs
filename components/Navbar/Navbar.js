@@ -1,9 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
 
+import styles from '../../sass/index.scss';
+
 const Navbar = () => {
   return (
-    <nav>
+    <nav className={styles.navContainer}>
       <menu>
         <Link href='/'>
           <a>Home</a>

@@ -1,12 +1,14 @@
 import React from 'react';
 import Navbar from '../Navbar/Navbar';
 
+import styles from '../../sass/index.scss'
+
 const Layout = ({ children }) => {
   return (
     <div>
       <Navbar />
         {children}
-      <footer>This is the footer</footer>
+      <footer className={styles.footer}>Challenge Resturant</footer>
     </div>
   )
 }
